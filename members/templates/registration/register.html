@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% block title %} Register {% endblock %}
+{% block content %}
+
+
+
+<h1> Registrate... </h1>
+
+ 
+
+<br/>
+<div class=""form-control">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% comment %} <button class = "btn-secondary"> Register </button> {% endcomment %}
+</div>
+<br>
+<br>
+
+<strong> Se quitó el botón para registrarse, para evitar registros malintencionados :p
+
+
+{% endblock %}

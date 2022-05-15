@@ -1,0 +1,56 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<h1> Otro Blog de Viajes 😛  </h1>
+
+<br>
+<br>
+
+<h4> Comentare sobre algunos destinos turisticos que hemos visitado, y con data de color que seguro te puede servir! </h4>
+
+<br/>
+<br/>
+<br/>
+
+<h1> Posteos </h1>
+
+<ul>
+{% for post in object_list %}
+    <li> <a href="{% url 'article-detail' post.pk %}"> 
+        {{ post.title }} </a>  
+        
+        <!--  slugify crea los guiones entre palabras para que no tengan espacios -->
+
+        - <a href="{% url 'category' post.category|slugify %}"> {{ post.category }} </a>
+        {{ post.author.first_name }} - 
+        {{ post.author.last_name }} - 
+        {{ post.post_date }}
+        <small> 
+
+            {% if user.is_authenticated  %}
+                {% if user.id == post.author.id %}
+
+                    - <a href="{% url 'update_post' post.pk %}">Edit Post</a> 
+                    <a href="{% url 'delete_post' post.pk %}">Delete Post</a> 
+                
+                {% endif %}
+
+
+            {% endif %}
+
+        </small><br/>
+    
+    {{ post.snippet }}
+    <!-- {{ post.body | slice:":200"|safe }} -->
+</li>
+{% endfor %}
+</ul>
+<br><br>
+
+<footer style="position: fixed; bottom: 0; width: 100%"> Este pequeño blog ha sido realizado con ❤️ utilizando Django y siguiendo los videos de codemy.com </footer>
+
+{% endblock %}
