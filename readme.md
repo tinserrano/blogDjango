@@ -1,7 +1,7 @@
 
 
 
-<h1> Blog con Django <h1/>
+<h1> Blog con Django </h1>
 
 Es un pequeño blog realizado sobre Django. 
 
